@@ -11,11 +11,28 @@ const PORT = process.env.PORT || 5000;
 // Security middleware
 app.use(helmet());
 
-// CORS configuration - allow requests from frontend
-app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://portfolio-analytics-dashboard-1-3dla.onrender.com',
-  credentials: true
-}));
+// --- THIS IS THE UPDATED PART ---
+// CORS configuration to allow requests from multiple specific frontends
+const allowedOrigins = [
+  'http://localhost:3000', // For local development
+  'https://portfolio-analytics-dashboard-i5owepq65-rishabhsh1rmas-projects.vercel.app' // For your live Vercel site
+];
+
+const corsOptions = {
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    if (allowedOrigins.indexOf(origin) === -1) {
+      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
+      return callback(new Error(msg), false);
+    }
+    return callback(null, true);
+  },
+  credentials: true,
+};
+
+app.use(cors(corsOptions));
+// --- UPDATE ENDS HERE ---
 
 // Logging middleware
 app.use(morgan('combined'));
