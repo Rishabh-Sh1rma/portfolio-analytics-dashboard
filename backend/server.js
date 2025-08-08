@@ -13,7 +13,7 @@ app.use(helmet());
 
 // CORS configuration - allow requests from frontend
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'https://portfolio-analytics-dashboard-1-3dla.onrender.com/',
+  origin: process.env.FRONTEND_URL || 'https://portfolio-analytics-dashboard-1-3dla.onrender.com',
   credentials: true
 }));
 
