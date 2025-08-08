@@ -11,29 +11,29 @@ const PORT = process.env.PORT || 5000;
 // Security middleware
 app.use(helmet());
 
-// --- THIS IS THE UPDATED PART ---
-// CORS configuration to allow requests from multiple specific frontends
-const allowedOrigins = [
-  'http://localhost:3000', // For local development
-  'https://portfolio-analytics-dashboard-i5owepq65-rishabhsh1rmas-projects.vercel.app', // Old Vercel URL (can keep for now)
-  'https://portfolio-analytics-dashboard-zeta.vercel.app' // *** ADD THIS NEW VERCEL URL ***
-];
-
+// --- THIS IS THE PERMANENT FIX ---
 const corsOptions = {
   origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
+    // This function checks if the incoming request origin is allowed.
+    // We will allow requests from localhost for development,
+    // and any URL that matches our Vercel deployment pattern.
+
+    // Regex to match any of your Vercel deployment URLs
+    const vercelPattern = /^https:\/\/portfolio-analytics-dashboard-.*\.vercel\.app$/;
+
+    // Allow localhost or any matching Vercel URL
+    if (!origin || origin === 'http://localhost:3000' || vercelPattern.test(origin)) {
+      callback(null, true); // Allow the request
+    } else {
+      callback(new Error('Not allowed by CORS')); // Block the request
     }
-    return callback(null, true);
   },
   credentials: true,
 };
 
 app.use(cors(corsOptions));
 // --- UPDATE ENDS HERE ---
+
 
 // Logging middleware
 app.use(morgan('combined'));
