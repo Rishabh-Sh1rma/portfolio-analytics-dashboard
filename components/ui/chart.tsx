@@ -1,5 +1,3 @@
-// components/ui/chart.tsx
-
 "use client"
 
 import * as React from "react"
@@ -105,15 +103,16 @@ type TooltipProps = Recharts.TooltipProps<any, any> & {
   color?: string
 }
 
-// Custom Tooltip
 //
-//
+// ========================================================================
 // --- THIS IS THE EMERGENCY FIX ---
 // The @ts-ignore comment below tells TypeScript to skip checking the props
 // for this component, forcing the build to succeed.
 //
 // @ts-ignore
 const ChartTooltipContent = React.forwardRef<HTMLDivElement, TooltipProps>(
+// ========================================================================
+//
   (
     {
       active,
