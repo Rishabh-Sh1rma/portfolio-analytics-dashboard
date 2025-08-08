@@ -2,6 +2,7 @@
 
 import * as React from "react"
 import * as Recharts from "recharts"
+
 import { cn } from "@/lib/utils"
 
 // Themes for styling charts
@@ -36,7 +37,10 @@ const ChartContainer = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement> & {
     config: ChartConfig
-    children: React.ReactNode
+    // --- THIS IS THE FIX ---
+    // The type for 'children' is now more specific (ReactElement instead of ReactNode)
+    // This directly solves the error in your Vercel build log.
+    children: React.ReactElement
   }
 >(({ id, className, children, config, ...props }, ref) => {
   const uniqueId = React.useId()
@@ -92,7 +96,7 @@ const ChartStyle = ({ id, config }: { id: string; config: ChartConfig }) => {
 }
 
 // Tooltip Types
-type TooltipProps = Recharts.TooltipProps & {
+type TooltipProps = Recharts.TooltipProps<any, any> & {
   hideLabel?: boolean
   hideIndicator?: boolean
   indicator?: "line" | "dot" | "dashed"
@@ -244,7 +248,7 @@ const ChartLegendContent = React.forwardRef<
         const itemConfig = config[key]
         return (
           <div
-            key={item.value}
+            key={item.value as string}
             className="flex items-center gap-1.5 [&>svg]:h-3 [&>svg]:w-3"
           >
             {itemConfig?.icon && !hideIcon ? (
