@@ -171,4 +171,9 @@ The application uses hardcoded sample data representing a diversified Indian sto
 - Lazy loading and code splitting
 - Optimized API calls
 
+<img width="1898" height="930" alt="image" src="https://github.com/user-attachments/assets/abcf2eb3-6276-4796-a520-ccce6352ddac" />
+<img width="1898" height="927" alt="image" src="https://github.com/user-attachments/assets/2194291f-1eef-48c5-afbb-ae9ea39d18d2" />
+<img width="1896" height="924" alt="image" src="https://github.com/user-attachments/assets/d09fd6bc-e68c-4ecd-9344-1023e512df69" />
+<img width="1890" height="931" alt="image" src="https://github.com/user-attachments/assets/c8d5ae1d-dfa2-4614-a252-1d58364aff61" />
+
 ## Made by Rishabh Sharma for - FullStack Developer Intern position at Wealthmanager
