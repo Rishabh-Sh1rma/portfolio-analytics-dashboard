@@ -15,7 +15,8 @@ app.use(helmet());
 // CORS configuration to allow requests from multiple specific frontends
 const allowedOrigins = [
   'http://localhost:3000', // For local development
-  'https://portfolio-analytics-dashboard-i5owepq65-rishabhsh1rmas-projects.vercel.app' // For your live Vercel site
+  'https://portfolio-analytics-dashboard-i5owepq65-rishabhsh1rmas-projects.vercel.app', // Old Vercel URL (can keep for now)
+  'https://portfolio-analytics-dashboard-zeta.vercel.app' // *** ADD THIS NEW VERCEL URL ***
 ];
 
 const corsOptions = {
