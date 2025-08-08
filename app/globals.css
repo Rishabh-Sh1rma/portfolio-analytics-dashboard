@@ -1,0 +1,31 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    /* Define your light mode colors here if you ever need them */
+  }
+
+  .dark {
+    --background: 224 71% 4%;      /* Very Dark Blue/Black */
+    --foreground: 210 40% 98%;    /* Off-White */
+    --card: 224 71% 4% / 0.5;      /* Semi-transparent card background */
+    --primary: 45 93% 47%;         /* Gold/Ochre */
+    --primary-foreground: 224 71% 4%; /* Dark text for on-primary elements */
+    --border: 45 93% 47% / 0.2;     /* Faint Gold border */
+    --input: 210 40% 98% / 0.1;     /* Faint input background */
+    --ring: 45 93% 47%;           /* Gold ring for focus states */
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* You can add your subtle background image here */
+    /* background-image: url('/background-texture.png'); */
+  }
+}
